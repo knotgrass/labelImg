@@ -1205,7 +1205,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 self.load_yolo_txt_by_filename(txt_path)
             elif os.path.isfile(json_path):
                 self.load_create_ml_json_by_filename(json_path, file_path)
-            
+
 
     def resizeEvent(self, event):
         if self.canvas and not self.image.isNull()\
@@ -1306,7 +1306,9 @@ class MainWindow(QMainWindow, WindowMixin):
         if dir_path is not None and len(dir_path) > 1:
             self.default_save_dir = dir_path
 
-        self.show_bounding_box_from_annotation_file(self.file_path)
+        # self.show_bounding_box_from_annotation_file(self.file_path)
+        # https://github.com/HumanSignal/labelImg/issues/917#issuecomment-1225812830
+        self.show_bounding_box_from_annotation_file(str(self.file_path))
 
         self.statusBar().showMessage('%s . Annotation will be saved to %s' %
                                      ('Change saved folder', self.default_save_dir))
@@ -1330,15 +1332,15 @@ class MainWindow(QMainWindow, WindowMixin):
             self.load_pascal_xml_by_filename(filename)
 
         elif self.label_file_format == LabelFileFormat.CREATE_ML:
-            
+
             filters = "Open Annotation JSON file (%s)" % ' '.join(['*.json'])
             filename = ustr(QFileDialog.getOpenFileName(self, '%s - Choose a json file' % __appname__, path, filters))
             if filename:
                 if isinstance(filename, (tuple, list)):
                     filename = filename[0]
 
-            self.load_create_ml_json_by_filename(filename, self.file_path)         
-        
+            self.load_create_ml_json_by_filename(filename, self.file_path)
+
 
     def open_dir_dialog(self, _value=False, dir_path=None, silent=False):
         if not self.may_continue():
@@ -1434,7 +1436,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
         if self.img_count <= 0:
             return
-        
+
         if not self.m_img_list:
             return
 

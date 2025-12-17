@@ -97,7 +97,7 @@ Python 3 + Qt5
     python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
 
 
-Python 3 Virtualenv (Recommended)
+Python 3 Virtualenv
 
 Virtualenv can avoid a lot of the QT / Python version issues
 
@@ -139,7 +139,7 @@ If you want to package it into a separate EXE file
     pip install pyinstaller
     pyinstaller --hidden-import=pyqt5 --hidden-import=lxml -F -n "labelImg" -c labelImg.py -p ./libs -p ./
 
-Windows + Anaconda
+Windows/Linux + Anaconda (Recommended)
 ^^^^^^^^^^^^^^^^^^
 
 Download and install `Anaconda <https://www.anaconda.com/download/#download>`__ (Python 3+)
@@ -147,9 +147,12 @@ Download and install `Anaconda <https://www.anaconda.com/download/#download>`__ 
 Open the Anaconda Prompt and go to the `labelImg <#labelimg>`__ directory
 
 .. code:: shell
-
-    conda install pyqt=5
-    conda install -c anaconda lxml
+    conda create -n label python=3.13
+    conda activate label
+    conda install pyqt=5 -y
+    conda install -c anaconda lxml -y
+    git clone https://github.com/knotgrass/labelImg.git
+    cd ./labelImg/
     pyrcc5 -o libs/resources.py resources.qrc
     python labelImg.py
     python labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
@@ -314,4 +317,3 @@ Stargazers over time
 ~~~~~~~~~~~~~~~~~~~~
 
 .. image:: https://starchart.cc/tzutalin/labelImg.svg
-
