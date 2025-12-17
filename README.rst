@@ -147,6 +147,7 @@ Download and install `Anaconda <https://www.anaconda.com/download/#download>`__ 
 Open the Anaconda Prompt and go to the `labelImg <#labelimg>`__ directory
 
 .. code:: shell
+
     conda create -n label python=3.13
     conda activate label
     conda install pyqt=5 -y
